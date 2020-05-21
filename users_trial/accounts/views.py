@@ -17,8 +17,7 @@ class SignUp(CreateView):
 #     model = User
 #
 class UserDetail(DetailView):
-    
-    model = UserModel
+    model = User
 
 # class UserUpdate(UpdateView,LoginRequiredMixin):
 #     model = UserModel
