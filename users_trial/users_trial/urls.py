@@ -22,4 +22,5 @@ urlpatterns = [
     path('',include('accounts.urls',namespace='accounts')),
     path('logged_in/',views.LoggedInView.as_view(),name='logged_in'),
     path('logged_out/',views.LoggedOutView.as_view(),name='thankyou'),
+    path('',include('groups.urls',namespace='groups')),
 ]
