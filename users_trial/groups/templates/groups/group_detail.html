@@ -1,0 +1,50 @@
+{% extends "groups/base_group.html" %}
+
+{% block pre_group %}
+<div class="container" id='groupdetail'>
+  <h4>Group Page</h4>
+  <p>Group Name: {{group.name}}</p>
+  <p>Description: {{group.description}}</p>
+  <p>Members: {{group.member.count}}</p>
+  <!-- <p>Owner: {% for user in group.membership.all %}
+    {{user.user}}
+
+  {% endfor %}</p> -->
+  <p>Created on: {{group.created_at}}</p>
+
+
+<style media="screen">
+  #groupdetail{
+    margin-top: 20px;
+  }
+</style>
+
+{% endblock pre_group %}
+
+{% block group %}
+  <h4>Posts</h4>
+  <p> to be Programmed</p>
+  </div>
+{% endblock group %}
+
+{% block post_group %}
+  <div class="container">
+    {% if user.is_authenticated %}
+      {% if user in group.member.all %}
+        <a href="{% url 'groups:leavegroup' slug=group.slug %}" class="btn btn-danger">Leave Group</a>
+      {% else %}
+        <a href="{% url 'groups:joingroup' slug=group.slug %}" class="btn btn-primary">Join Group</a>
+      {% endif %}
+    {% else %}
+    <div class="container">
+        <div class="jumbotron">
+          <h4>Login/Sign Up</h4>
+          <h6>You are not logged in. Please login or signup. </h6>
+          <a  class="btn btn-primary" href="{% url 'accounts:login' %}">Login</a>
+          <a  class="btn btn-primary" href="{% url 'accounts:signup' %}">Sign Up</a>
+        </div>
+    </div>
+    {% endif %}
+  </div>
+
+{% endblock post_group %}
