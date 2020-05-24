@@ -6,9 +6,9 @@ from django.urls import reverse
 User = get_user_model()
 
 class Group(models.Model):
-    name = models.CharField(blank=False, max_length=100)
+    name = models.CharField(blank=False, max_length=100, unique =True)
     created_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True,unique=True)
     description = models.CharField(blank=True, max_length=255)
     member = models.ManyToManyField(User,through='GroupMember')
     # owner = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -21,6 +21,7 @@ class Group(models.Model):
         return self.name
 
     def get_absolute_url(self):
+        ownership = True
         return reverse('groups:joingroup',kwargs={'slug':self.slug})
 
     class Meta:
@@ -29,7 +30,7 @@ class Group(models.Model):
 class GroupMember(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, related_name = 'membership')
     group = models.ForeignKey(Group, related_name = 'user_group',on_delete=models.CASCADE)
-    # ownership = models.BooleanField(default=True)
+    ownership = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

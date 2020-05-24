@@ -1,13 +1,32 @@
 {% extends "accounts/base_user.html" %}
+{% load static %}
 {% block body_block %}
+
 <div class="container">
+  <div class="card mb-3">
+    <img src="{% static 'accounts/image.jpg' %}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><strong><label >Username:  </label></strong> {{user.username}}</h5>
+      <p class="card-text"><strong><label >First Name: </label></strong> {{user.first_name}} </p>
+      <p class="card-text"><strong><label >Last Name:  </label></strong> {{user.last_name}} </p>
+      <p class="card-text"><strong><label >Email ID:  </label></strong> {{user.email}} </p>
+
+      <p class="card-text"><small class="text-muted">Last updated ___ mins ago</small></p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container">
   <ul>
     <li><p> <strong><label >Username:  </label></strong> {{user.username}}</p> </li>
     <li><p><strong><label >First Name: </label></strong> {{user.first_name}} </p></li>
     <li><p><strong><label >Last Name:  </label></strong> {{user.last_name}} </p> </li>
     <li><p><strong><label >Email ID:  </label></strong> {{user.email}} </p></li>
   </ul>
-</div>
+</div> -->
 
 
 {% endblock body_block %}

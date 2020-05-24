@@ -6,10 +6,7 @@
   <p>Group Name: {{group.name}}</p>
   <p>Description: {{group.description}}</p>
   <p>Members: {{group.member.count}}</p>
-  <!-- <p>Owner: {% for user in group.membership.all %}
-    {{user.user}}
-
-  {% endfor %}</p> -->
+  <p>Owner: {{owner}}</p>
   <p>Created on: {{group.created_at}}</p>
 
 
@@ -32,6 +29,7 @@
     {% if user.is_authenticated %}
       {% if user in group.member.all %}
         <a href="{% url 'groups:leavegroup' slug=group.slug %}" class="btn btn-danger">Leave Group</a>
+        <a href="{% url 'groups:deletegroup' slug=group.slug %}" class="btn btn-danger">Delete Group</a>
       {% else %}
         <a href="{% url 'groups:joingroup' slug=group.slug %}" class="btn btn-primary">Join Group</a>
       {% endif %}
